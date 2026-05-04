@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ujian Informatika</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .soal {
+        background: #f9fbff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border-left: 5px solid #4facfe;
+        transition: 0.3s;
+      }
+
+      .soal:hover {
+        transform: scale(1.01);
+        background: #eef6ff;
+      }
+
+      .soal p {
+        font-weight: 600;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin: 6px 0;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      label:hover {
+        background: #e6f0ff;
+      }
+
+      input[type="radio"] {
+        margin-right: 8px;
+      }
+
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 30px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #4facfe, #00c6ff);
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #00c6ff, #4facfe);
+      }
+
+      #hasil {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #222;
+        padding: 15px;
+        border-radius: 10px;
+        background: #f1f8ff;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      label {
+        transition: 0.3s;
+      }
+
+      label.correct {
+        background: #d4edda;
+      }
+
+      label.wrong {
+        background: #f8d7da;
+      }
+
+      /* Animasi */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ujian Informatika</h1>
+      <div id="soal"></div>
+      <button onclick="submitJawaban()">Submit</button>
+      <h2 id="hasil"></h2>
+    </div>
+
+    <script>
+      let nama = prompt("Masukkan nama kamu:");
+      const soal = [
+        /* ================= WORD (25) ================= */
+        "1. Seorang siswa ingin mengatur margin skripsi sesuai ketentuan kampus. Tab yang harus digunakan adalah...",
+        "2. Saat membuat laporan, Andi ingin semua judul menjadi tebal dengan cepat. Shortcut yang tepat adalah...",
+        "3. Dina ingin menambahkan nomor halaman otomatis pada dokumen. Fitur ini terdapat pada tab...",
+        "4. Seorang siswa ingin mengubah orientasi kertas menjadi landscape. Tab yang digunakan adalah...",
+        "5. Jika ingin menyisipkan gambar ke dalam dokumen, maka ikon yang digunakan terdapat pada tab...",
+        "6. Saat mengetik, Budi ingin menyalin teks tanpa mouse. Shortcut yang benar adalah...",
+        "7. Untuk mengatur jarak antar baris (line spacing), fitur yang digunakan berada pada group...",
+        "8. Seorang siswa ingin membuat daftar isi otomatis. Tab yang digunakan adalah...",
+        "9. Untuk menyimpan dokumen dengan nama baru, perintah yang digunakan adalah...",
+        "10. Jika ingin menampilkan ruler di Word, maka tab yang digunakan adalah...",
+        "11. Untuk mengganti jenis font seluruh dokumen dengan cepat, langkah terbaik adalah...",
+        "12. Jika ingin membuat teks rata tengah, ikon yang digunakan adalah...",
+        "13. Untuk menghapus format teks, ikon yang digunakan adalah...",
+        "14. Saat ingin mencetak dokumen, shortcut yang digunakan adalah...",
+        "15. Untuk menambahkan tabel, fitur tersebut ada di tab...",
+        "16. Jika ingin mengganti warna teks, maka ikon yang digunakan adalah...",
+        "17. Untuk mencari kata tertentu dalam dokumen, shortcut yang digunakan adalah...",
+        "18. Saat ingin mengganti semua kata tertentu, fitur yang digunakan adalah...",
+        "19. Untuk membuat bullet atau numbering, fitur terdapat pada group...",
+        "20. Jika ingin menambahkan header/footer, tab yang digunakan adalah...",
+        "21. Untuk melihat hasil cetak sebelum print, fitur yang digunakan adalah...",
+        "22. Saat ingin menambahkan hyperlink, tab yang digunakan adalah...",
+        "23. Untuk mengatur ukuran kertas, fitur berada pada tab...",
+        "24. Untuk membatalkan perintah terakhir, shortcut yang digunakan adalah...",
+        "25. Untuk mengulang perintah terakhir, shortcut yang digunakan adalah...",
+
+        /* ================= EXCEL (20) ================= */
+        "26. Diketahui data nilai di B2:B6. Untuk menghitung jumlah nilai secara benar adalah...",
+        "27. Untuk menghitung rata-rata nilai di B2 sampai B10, rumus yang benar adalah...",
+        "28. Untuk mencari nilai tertinggi dari C2:C8, rumus yang tepat adalah...",
+        "29. Untuk mencari nilai terendah dari C2:C8, rumus yang tepat adalah...",
+        '30. =IF(B2="A";"Sangat Baik";IF(B2="B";"Baik";"Cukup")) Jika B2 berisi D, maka hasilnya adalah...',
+        "31. Untuk menentukan ranking dari nilai di B2:B10, rumus yang benar adalah...",
+        "32. Jika ingin ranking dari nilai terkecil, maka rumus yang digunakan adalah...",
+        "33. Diketahui data di A1:A5. Rumus yang SALAH adalah...",
+        "34. Fungsi tanda $ pada Excel digunakan untuk...",
+        "35. Rumus =SUM(B2:B5) akan menghasilkan...",
+        "36. Jika ingin mengunci kolom saja, penulisan yang benar adalah...",
+        "37. Rumus IF yang salah adalah...",
+        "38. Seorang guru memiliki data pada kolom B (Predikat)...\n\nA = Sangat Baik\nB = Baik\nC = Cukup\nD = Kurang Baik\n\nRumus yang benar adalah...",
+        "39. Untuk menghitung rata-rata tanpa error, rumus yang benar adalah...",
+        "40. Penulisan range yang benar adalah...",
+        "41. Untuk mencari ranking terbesar ke kecil, default order adalah...",
+        "42. Jika dua nilai sama dalam RANK, maka hasilnya...",
+        "43. Fungsi MAX digunakan untuk...",
+        "44. Fungsi MIN digunakan untuk...",
+        "45. Kesalahan umum dalam penulisan rumus adalah...",
+      ];
+
+      const pilihan = [
+        ["A. Home", "B. Insert", "C. Layout", "D. View"],
+        ["A. Ctrl+I", "B. Ctrl+B", "C. Ctrl+U", "D. Ctrl+P"],
+        ["A. Home", "B. Insert", "C. Design", "D. Layout"],
+        ["A. Home", "B. Layout", "C. Insert", "D. View"],
+        ["A. Home", "B. Insert", "C. View", "D. Layout"],
+        ["A. Ctrl+X", "B. Ctrl+C", "C. Ctrl+V", "D. Ctrl+P"],
+        ["A. Paragraph", "B. Font", "C. Styles", "D. Editing"],
+        ["A. References", "B. Insert", "C. Layout", "D. View"],
+        ["A. Save", "B. Save As", "C. Print", "D. Close"],
+        ["A. Insert", "B. View", "C. Home", "D. Layout"],
+        ["A. Replace", "B. Select All lalu ubah font", "C. Manual", "D. Print"],
+        ["A. Left", "B. Center", "C. Right", "D. Justify"],
+        ["A. Clear Formatting", "B. Bold", "C. Italic", "D. Underline"],
+        ["A. Ctrl+S", "B. Ctrl+P", "C. Ctrl+C", "D. Ctrl+V"],
+        ["A. Insert", "B. Home", "C. View", "D. Layout"],
+        ["A. Font Color", "B. Bold", "C. Italic", "D. Underline"],
+        ["A. Ctrl+F", "B. Ctrl+H", "C. Ctrl+S", "D. Ctrl+P"],
+        ["A. Find", "B. Replace", "C. Select", "D. Edit"],
+        ["A. Font", "B. Paragraph", "C. Styles", "D. Editing"],
+        ["A. Insert", "B. Home", "C. Layout", "D. View"],
+        ["A. Print Preview", "B. Save", "C. Edit", "D. Insert"],
+        ["A. Insert", "B. Home", "C. Layout", "D. View"],
+        ["A. Layout", "B. Insert", "C. Home", "D. View"],
+        ["A. Ctrl+Z", "B. Ctrl+Y", "C. Ctrl+X", "D. Ctrl+C"],
+        ["A. Ctrl+Z", "B. Ctrl+Y", "C. Ctrl+P", "D. Ctrl+S"],
+
+        // Excel
+        [
+          "A. =SUM(B2:B6)",
+          "B. =SUM(B2;B6)",
+          "C. =SUM(B2-B6)",
+          "D. =SUM(B2,B6)",
+        ],
+        [
+          "A. =AVERAGE(B2:B10)",
+          "B. =AVG(B2:B10)",
+          "C. =MEAN(B2:B10)",
+          "D. =RATA2(B2:B10)",
+        ],
+        [
+          "A. =MAX(C2:C8)",
+          "B. =MAX(C2;C8)",
+          "C. =HIGH(C2:C8)",
+          "D. =TOP(C2:C8)",
+        ],
+        [
+          "A. =MIN(C2:C8)",
+          "B. =LOW(C2:C8)",
+          "C. =MIN(C2;C8)",
+          "D. =SMALL(C2:C8)",
+        ],
+        [
+          'A. Sangat Baik   ',
+          "B. Baik",
+          'C. Cukup',
+          "D. Error",
+        ],
+        [
+          "A. =RANK(B2,$B$2:$B$10)",
+          "B. =RANK(B2,B2:B10)",
+          "C. =RANKING(B2,B2:B10)",
+          "D. =RANK(B2;$B$2:$B$10)",
+        ],
+        [
+          "A. =RANK(B2,$B$2:$B$10,1)",
+          "B. =RANK(B2,$B$2:$B$10,0)",
+          "C. =RANK(B2,B2:B10)",
+          "D. =RANK(B2)",
+        ],
+        [
+          "A. =SUM(A1:A5)",
+          "B. =SUM(A1;A5)",
+          "C. =SUM(A1-A5)",
+          "D. =SUM(A1,A5)",
+        ],
+        [
+          "A. Mengunci sel",
+          "B. Menghapus data",
+          "C. Menghitung data",
+          "D. Membuat grafik",
+        ],
+        [
+          "A. Penjumlahan range",
+          "B. Pengurangan",
+          "C. Pembagian",
+          "D. Perkalian",
+        ],
+        ["A. $A1", "B. A$1", "C. $A$1", "D. A1"],
+        [
+          'A. =IF(A1>75,"Lulus","Tidak")',
+          "B. =IF(A1>75,Lulus,Tidak)",
+          "C. =IF(A1>75)",
+          'D. =IF(A1>75;"Lulus")',
+        ],
+        [
+          'A. =IF(B2="A";"Sangat Baik";IF(B2="B";"Baik";IF(B2="C";"Cukup";"Kurang Baik")))',
+          'B. =IF(TRIM(B2)="A";"Sangat Baik";IF(TRIM(B2)="B";"Baik";IF(TRIM(B2)="C";"Cukup";"Kurang Baik")))',
+          'C. =IF(B2>="A";"Sangat Baik";IF(B2>="B";"Baik";IF(B2>="C";"Cukup";"Kurang Baik")))',
+          'D. =IFS(B2="A";"Sangat Baik";B2="B";"Baik";B2="C";"Cukup";B2="D";"Kurang Baik")',
+        ],
+        [
+          "A. =AVERAGE(A1:A10)",
+          "B. =AVG(A1:A10)",
+          "C. =MEAN(A1:A10)",
+          "D. =RATA(A1:A10)",
+        ],
+        ["A. A1:A5", "B. A1-A5", "C. A1,A5", "D. A1;A5"],
+        ["A. 0", "B. 1", "C. 2", "D. kosong"],
+        ["A. Sama ranking", "B. Berbeda", "C. Error", "D. Kosong"],
+        ["A. Nilai terbesar", "B. Nilai terkecil", "C. Jumlah", "D. Rata-rata"],
+        ["A. Nilai terkecil", "B. Nilai terbesar", "C. Jumlah", "D. Rata-rata"],
+        [
+          "A. Salah tanda",
+          "B. Benar semua",
+          "C. Tidak ada error",
+          "D. Semua benar",
+        ],
+      ];
+
+      const jawaban = [
+        "C",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "A",
+        "A",
+        "B",
+        "B",
+        "B",
+        "B",
+        "A",
+        "B",
+        "A",
+        "A",
+        "A",
+        "B",
+        "B",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "B",
+        "A",
+        "A",
+        "A",
+        "A",
+        "C",
+        "A",
+        "A",
+        "C",
+        "A",
+        "A",
+        "A",
+        "A",
+        "B",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+      ];
+
+      let html = "";
+      soal.forEach((s, i) => {
+        html += `<div class="soal"><p>${s}</p>`;
+        pilihan[i].forEach((p) => {
+          html += `<label><input type="radio" name="q${i}" value="${p[0]}"> ${p}</label><br>`;
+        });
+        html += "</div>";
+      });
+      document.getElementById("soal").innerHTML = html;
+
+      function submitJawaban() {
+        let skor = 0;
+
+        soal.forEach((s, i) => {
+          let pilih = document.querySelector(`input[name=q${i}]:checked`);
+          let semuaPilihan = document.querySelectorAll(`input[name=q${i}]`);
+
+          semuaPilihan.forEach((p) => {
+            p.disabled = true; // biar tidak bisa diubah lagi
+            let label = p.parentElement;
+
+            if (p.value === jawaban[i]) {
+              label.style.background = "#d4edda"; // hijau (benar)
+            }
+
+            if (pilih && p.value === pilih.value && p.value !== jawaban[i]) {
+              label.style.background = "#f8d7da"; // merah (salah)
+            }
+          });
+
+          if (pilih && pilih.value === jawaban[i]) skor++;
+        });
+
+        let nilai = Math.round((skor / soal.length) * 100);
+
+        let hasil =
+          nilai >= 85
+            ? `🎉 Pecah Nian ${nama}! Nilai kamu ${nilai}`
+            : `${nama}, Nilai kamu ${nilai}`;
+
+        document.getElementById("hasil").innerText = hasil;
+      }
+    </script>
+  </body>
+</html>
