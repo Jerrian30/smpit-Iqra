@@ -7,219 +7,157 @@
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#4facfe,#00f2fe);
-min-height:100vh;
-padding:20px;
+    background:#f4f7fb;
+    color:#333;
 }
 
 .container{
-max-width:1000px;
-margin:auto;
-background:white;
-border-radius:20px;
-padding:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    max-width:900px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-header{
-text-align:center;
-margin-bottom:20px;
-}
-
-header h1{
-color:#1e3a8a;
-margin-bottom:10px;
+h1{
+    text-align:center;
+    margin-bottom:10px;
+    color:#1e3a8a;
 }
 
 .info{
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:10px;
-margin-bottom:20px;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 .timer{
-background:#ef4444;
-color:white;
-padding:10px 20px;
-border-radius:10px;
-font-weight:bold;
+    background:#ef4444;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    font-weight:bold;
 }
 
 .progress-container{
-width:100%;
-height:18px;
-background:#ddd;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:20px;
+    width:100%;
+    height:20px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:20px;
 }
 
 .progress-bar{
-height:100%;
-width:0%;
-background:linear-gradient(to right,#10b981,#22c55e);
-transition:0.3s;
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#3b82f6,#06b6d4);
+    transition:0.3s;
 }
 
 .question-box{
-margin-bottom:20px;
-}
-
-.question-number{
-font-size:18px;
-font-weight:bold;
-margin-bottom:10px;
-color:#1e3a8a;
+    margin-bottom:20px;
 }
 
 .question{
-font-size:18px;
-margin-bottom:15px;
-line-height:1.5;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
 }
 
 .option{
-background:#f3f4f6;
-padding:12px;
-margin-bottom:10px;
-border-radius:10px;
-cursor:pointer;
-transition:0.3s;
-border:2px solid transparent;
+    background:#f1f5f9;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.2s;
 }
 
 .option:hover{
-background:#dbeafe;
+    background:#dbeafe;
 }
 
 .option input{
-margin-right:10px;
+    margin-right:10px;
 }
 
-.buttons{
-display:flex;
-justify-content:space-between;
-margin-top:20px;
-flex-wrap:wrap;
-gap:10px;
+.navigation{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
 }
 
 button{
-padding:12px 20px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-font-size:16px;
-font-weight:bold;
-transition:0.3s;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
 }
 
 .prev-btn{
-background:#6b7280;
-color:white;
+    background:#64748b;
 }
 
 .next-btn{
-background:#2563eb;
-color:white;
+    background:#2563eb;
 }
 
 .submit-btn{
-background:#16a34a;
-color:white;
+    background:#16a34a;
+    width:100%;
+    margin-top:20px;
 }
 
-button:hover{
-transform:scale(1.03);
-opacity:0.9;
-}
-
-.result-container{
-display:none;
-}
-
-.result-box{
-text-align:center;
-padding:20px;
-background:#f8fafc;
-border-radius:20px;
-margin-bottom:20px;
-}
-
-.score{
-font-size:50px;
-color:#16a34a;
-font-weight:bold;
+.result{
+    display:none;
 }
 
 .correct{
-background:#dcfce7 !important;
-border:2px solid #22c55e !important;
+    background:#dcfce7 !important;
+    border:2px solid #22c55e;
 }
 
 .wrong{
-background:#fee2e2 !important;
-border:2px solid #ef4444 !important;
+    background:#fee2e2 !important;
+    border:2px solid #ef4444;
 }
 
 .review-box{
-margin-top:20px;
-padding:20px;
-border-radius:15px;
-background:#f9fafb;
-}
-
-.review-question{
-margin-bottom:25px;
-padding-bottom:15px;
-border-bottom:1px solid #ddd;
-}
-
-.review-question h3{
-margin-bottom:10px;
-}
-
-.explanation{
-margin-top:10px;
-background:#eff6ff;
-padding:10px;
-border-radius:10px;
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:#f8fafc;
 }
 
 @media(max-width:768px){
-.question{
-font-size:16px;
-}
-
-button{
-width:100%;
-}
+    .question{
+        font-size:18px;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-<header>
-<h1>Simulasi Ujian Informatika SMP</h1>
-<p>Kelas VIII Semester Genap</p>
-</header>
-
-<div id="quiz-container">
+<h1>Simulasi Ujian Informatika</h1>
 
 <div class="info">
-<div><strong>Jumlah Soal:</strong> 40</div>
+<div><b>SMP Negeri 21 Kota Bengkulu</b></div>
 <div class="timer" id="timer">60:00</div>
 </div>
 
@@ -227,31 +165,16 @@ width:100%;
 <div class="progress-bar" id="progressBar"></div>
 </div>
 
-<div class="question-box">
-<div class="question-number" id="question-number"></div>
-<div class="question" id="question"></div>
-<div id="options"></div>
-</div>
+<div id="quiz-container"></div>
 
-<div class="buttons">
+<div class="navigation">
 <button class="prev-btn" onclick="prevQuestion()">Previous</button>
 <button class="next-btn" onclick="nextQuestion()">Next</button>
+</div>
+
 <button class="submit-btn" onclick="submitQuiz()">Submit</button>
-</div>
 
-</div>
-
-<div class="result-container" id="result-container">
-
-<div class="result-box">
-<h2>Hasil Ujian</h2>
-<div class="score" id="score"></div>
-<p id="summary"></p>
-</div>
-
-<div id="review"></div>
-
-</div>
+<div class="result" id="result"></div>
 
 </div>
 
@@ -260,333 +183,331 @@ width:100%;
 const questions = [
 
 {
-question:"Bahasa pemrograman prosedural mulai populer pada tahun....",
-options:["1960-an","1980-an","2000-an","2015"],
-answer:"1960-an",
-explanation:"Bahasa pemrograman prosedural mulai berkembang dan populer sekitar tahun 1960-an."
+question:"1. Bahasa pemrograman prosedural mulai berkembang pesat sekitar tahun...",
+options:["1940-an","1950-an","1980-an","2000-an"],
+answer:"B",
+explanation:"Bahasa pemrograman prosedural berkembang pesat pada tahun 1950-an."
 },
 
 {
-question:"Bentuk penyusunan data pada Microsoft Excel disebut....",
-options:["Baris dan kolom","Slide","Paragraf","Layer"],
-answer:"Baris dan kolom",
-explanation:"Data di Excel disusun dalam bentuk baris dan kolom."
+question:"2. Penyusunan data pada Microsoft Excel berbentuk...",
+options:["Paragraf","Baris dan kolom","Gambar","Diagram"],
+answer:"B",
+explanation:"Excel menyusun data dalam bentuk baris dan kolom."
 },
 
 {
-question:"Cell pada Microsoft Excel adalah....",
-options:["Gabungan workbook","Kotak tempat memasukkan data","Kumpulan sheet","Menu utama"],
-answer:"Kotak tempat memasukkan data",
-explanation:"Cell adalah perpotongan antara baris dan kolom."
+question:"3. Sel (cell) pada Excel adalah...",
+options:["Kumpulan workbook","Pertemuan baris dan kolom","Menu utama","Grafik"],
+answer:"B",
+explanation:"Cell adalah pertemuan antara baris dan kolom."
 },
 
 {
-question:"Generalisasi dalam berpikir komputasional berarti....",
-options:["Mengelompokkan pola yang sama","Menghapus data","Menggambar tabel","Menyimpan file"],
-answer:"Mengelompokkan pola yang sama",
-explanation:"Generalisasi digunakan untuk menemukan pola yang serupa."
+question:"4. Generalisasi dalam berpikir komputasional berarti...",
+options:["Menghafal","Mencari pola umum","Menggambar","Menyalin data"],
+answer:"B",
+explanation:"Generalisasi digunakan untuk menemukan pola umum."
 },
 
 {
-question:"Mengurutkan data dari kecil ke besar disebut....",
-options:["Ascending","Delete","Filtering","Descending"],
-answer:"Ascending",
-explanation:"Ascending berarti urutan naik dari kecil ke besar."
+question:"5. Pengurutan data dari kecil ke besar disebut...",
+options:["Ascending","Descending","Copy","Paste"],
+answer:"A",
+explanation:"Ascending berarti urutan naik."
 },
 
 {
-question:"Tujuan visualisasi data adalah....",
-options:["Mempermudah memahami data","Menghapus data","Menggandakan data","Mematikan komputer"],
-answer:"Mempermudah memahami data",
-explanation:"Visualisasi membantu data lebih mudah dipahami."
+question:"6. Tujuan visualisasi data adalah...",
+options:["Memperumit data","Mempermudah memahami data","Menghapus data","Menyimpan data"],
+answer:"B",
+explanation:"Visualisasi data membantu memahami informasi."
 },
 
 {
-question:"Transformasi data adalah proses....",
-options:["Mengubah bentuk data","Menghapus semua data","Membuat game","Mematikan aplikasi"],
-answer:"Mengubah bentuk data",
-explanation:"Transformasi data digunakan untuk mengubah format atau bentuk data."
+question:"7. Transformasi data adalah...",
+options:["Menghapus data","Mengubah bentuk data","Menyembunyikan data","Membuat virus"],
+answer:"B",
+explanation:"Transformasi data berarti mengubah format atau bentuk data."
 },
 
 {
-question:"Fitur Shapes pada Microsoft Office digunakan untuk....",
-options:["Membuat bentuk","Menambah suara","Menghapus sheet","Mengganti wallpaper"],
-answer:"Membuat bentuk",
-explanation:"Shapes digunakan membuat objek bentuk seperti lingkaran dan kotak."
+question:"8. Shapes pada Microsoft Office digunakan untuk...",
+options:["Menggambar bentuk","Menghapus file","Memainkan musik","Mengubah wallpaper"],
+answer:"A",
+explanation:"Shapes digunakan untuk membuat bentuk."
 },
 
 {
-question:"Tujuan analisis data adalah....",
-options:["Mendapatkan informasi","Menghapus data","Mengganti warna","Menutup aplikasi"],
-answer:"Mendapatkan informasi",
-explanation:"Analisis data bertujuan memperoleh informasi dari data."
+question:"9. Analisis data bertujuan untuk...",
+options:["Mengacak data","Mendapatkan informasi","Menghapus file","Memperkecil layar"],
+answer:"B",
+explanation:"Analisis data membantu memperoleh informasi penting."
 },
 
 {
-question:"Database adalah....",
-options:["Kumpulan data","Kumpulan gambar","Kumpulan lagu","Kumpulan video"],
-answer:"Kumpulan data",
-explanation:"Database merupakan kumpulan data yang tersusun rapi."
+question:"10. Database adalah...",
+options:["Kumpulan data","Program game","Perangkat keras","Jaringan internet"],
+answer:"A",
+explanation:"Database merupakan kumpulan data yang terorganisir."
 },
 
 {
-question:"Alamat website resmi Scratch adalah....",
-options:["scratch.mit.edu","google.com","excel.com","office.net"],
-answer:"scratch.mit.edu",
-explanation:"Website resmi Scratch adalah scratch.mit.edu."
+question:"11. Website resmi Scratch adalah...",
+options:["scratch.mit.edu","google.com","youtube.com","office.com"],
+answer:"A",
+explanation:"Scratch dapat diakses di scratch.mit.edu."
 },
 
 {
-question:"Fungsi Scratch adalah untuk....",
-options:["Membuat animasi dan game","Mengedit video","Membuat tabel","Mencetak dokumen"],
-answer:"Membuat animasi dan game",
-explanation:"Scratch digunakan untuk belajar coding dan membuat animasi."
+question:"12. Scratch digunakan untuk...",
+options:["Memasak","Membuat animasi/program","Menggambar manual","Mengetik surat"],
+answer:"B",
+explanation:"Scratch digunakan untuk membuat animasi dan program."
 },
 
 {
-question:"Program aplikasi berfungsi untuk....",
-options:["Membantu pekerjaan pengguna","Menghidupkan listrik","Membuat CPU","Menambah RAM"],
-answer:"Membantu pekerjaan pengguna",
-explanation:"Aplikasi digunakan untuk membantu pekerjaan tertentu."
+question:"13. Program aplikasi berfungsi untuk...",
+options:["Mengatur hardware","Membantu pekerjaan pengguna","Merusak komputer","Menyimpan virus"],
+answer:"B",
+explanation:"Aplikasi membantu pengguna menyelesaikan pekerjaan."
 },
 
 {
-question:"Algoritma adalah....",
-options:["Langkah-langkah menyelesaikan masalah","Jenis komputer","Perangkat keras","Bahasa Inggris"],
-answer:"Langkah-langkah menyelesaikan masalah",
-explanation:"Algoritma merupakan urutan langkah logis."
+question:"14. Algoritma adalah...",
+options:["Bahasa Inggris","Langkah-langkah penyelesaian masalah","Virus komputer","Nama perangkat"],
+answer:"B",
+explanation:"Algoritma adalah urutan langkah logis."
 },
 
 {
-question:"Kekurangan Scratch adalah....",
-options:["Fitur terbatas","Sulit digunakan","Tidak memiliki blok","Tidak dapat dijalankan"],
-answer:"Fitur terbatas",
-explanation:"Scratch memiliki keterbatasan dibanding bahasa pemrograman profesional."
+question:"15. Kekurangan Scratch adalah...",
+options:["Sulit dipahami pemula","Tampilan visual terbatas","Tidak memiliki blok","Tidak bisa online"],
+answer:"B",
+explanation:"Scratch memiliki keterbatasan visual tertentu."
 },
 
 {
-question:"Kata komputer berasal dari kata compute yang berarti....",
-options:["Menghitung","Menggambar","Menulis","Membaca"],
-answer:"Menghitung",
+question:"16. Kata komputer berasal dari kata 'compute' yang berarti...",
+options:["Menggambar","Menghitung","Menulis","Menyimpan"],
+answer:"B",
 explanation:"Compute berarti menghitung."
 },
 
 {
-question:"Informatika adalah ilmu yang mempelajari....",
-options:["Pengolahan informasi menggunakan komputer","Olahraga","Musik","Pertanian"],
-answer:"Pengolahan informasi menggunakan komputer",
-explanation:"Informatika mempelajari pengolahan informasi berbasis teknologi."
+question:"17. Informatika adalah ilmu tentang...",
+options:["Olahraga","Pengolahan informasi","Memasak","Musik"],
+answer:"B",
+explanation:"Informatika mempelajari pengolahan informasi."
 },
 
 {
-question:"Yang termasuk software adalah....",
-options:["Microsoft Word","Keyboard","Monitor","Mouse"],
-answer:"Microsoft Word",
-explanation:"Microsoft Word merupakan perangkat lunak."
+question:"18. Contoh software adalah...",
+options:["Keyboard","Mouse","Microsoft Word","Printer"],
+answer:"C",
+explanation:"Microsoft Word termasuk software."
 },
 
 {
-question:"Tanda '=' pada Excel digunakan untuk....",
-options:["Mengawali rumus","Menghapus data","Mengganti warna","Menutup workbook"],
-answer:"Mengawali rumus",
+question:"19. Tanda '=' pada Excel digunakan untuk...",
+options:["Menghapus data","Memulai rumus","Membuat tabel","Mengganti warna"],
+answer:"B",
 explanation:"Rumus Excel selalu diawali tanda '='."
 },
 
 {
-question:"Workbook pada Excel berarti....",
-options:["Buku kerja","Lembar tunggal","Kotak data","File gambar"],
-answer:"Buku kerja",
-explanation:"Workbook adalah file kerja Excel."
+question:"20. Workbook pada Excel adalah...",
+options:["Lembar kerja","File Excel","Kolom","Baris"],
+answer:"B",
+explanation:"Workbook adalah file Excel."
 },
 
 {
-question:"Penulisan rumus Excel yang benar adalah....",
-options:["=SUM(A1:A5)","SUM(A1:A5)","SUM=A1:A5","A1+A5="],
-answer:"=SUM(A1:A5)",
-explanation:"Rumus Excel harus diawali '='."
+question:"21. Penulisan rumus Excel yang benar adalah...",
+options:["SUM(A1:A5)","=SUM(A1:A5)","SUM=A1:A5","A1+A5="],
+answer:"B",
+explanation:"Rumus harus diawali tanda '='."
 },
 
 {
-question:"Langkah awal membuat program adalah....",
-options:["Menentukan masalah","Mencetak dokumen","Memasang speaker","Menghapus data"],
-answer:"Menentukan masalah",
-explanation:"Program dibuat setelah mengetahui masalah yang akan diselesaikan."
+question:"22. Langkah awal membuat program adalah...",
+options:["Mencetak program","Membuat algoritma","Menghapus file","Menggambar"],
+answer:"B",
+explanation:"Program dimulai dengan algoritma."
 },
 
 {
-question:"Dampak bullying digital adalah....",
-options:["Korban merasa sedih","Menambah semangat","Mempercepat internet","Menghemat listrik"],
-answer:"Korban merasa sedih",
-explanation:"Bullying dapat berdampak buruk pada mental korban."
+question:"23. Dampak bullying digital adalah...",
+options:["Meningkatkan percaya diri","Menyakiti mental korban","Membuat sehat","Mempercepat internet"],
+answer:"B",
+explanation:"Bullying dapat merusak mental korban."
 },
 
 {
-question:"UU cyberlaw di Indonesia dikenal dengan....",
-options:["UU ITE","UU Pajak","UU Pendidikan","UU Kesehatan"],
-answer:"UU ITE",
-explanation:"Cyberlaw di Indonesia diatur dalam UU ITE."
+question:"24. Cyberlaw di Indonesia diatur dalam...",
+options:["UU ITE","UUD 1945","KUHP","UU Pajak"],
+answer:"A",
+explanation:"Cyberlaw diatur dalam UU ITE."
 },
 
 {
-question:"Dunia virtual adalah....",
-options:["Dunia berbasis digital","Dunia nyata","Tempat wisata","Gedung sekolah"],
-answer:"Dunia berbasis digital",
+question:"25. Dunia virtual adalah...",
+options:["Lingkungan digital","Lingkungan nyata","Lapangan","Pasar"],
+answer:"A",
 explanation:"Dunia virtual merupakan lingkungan digital."
 },
 
 {
-question:"Content communities pada media sosial digunakan untuk....",
-options:["Berbagi konten","Belanja","Mencetak buku","Membuat listrik"],
-answer:"Berbagi konten",
-explanation:"Content communities memungkinkan berbagi konten."
+question:"26. Contoh content communities adalah...",
+options:["YouTube","Wikipedia","TikTok","Instagram"],
+answer:"B",
+explanation:"Wikipedia termasuk content communities."
 },
 
 {
-question:"Media sosial adalah....",
-options:["Sarana komunikasi online","Mesin hitung","Perangkat keras","Program antivirus"],
-answer:"Sarana komunikasi online",
-explanation:"Media sosial digunakan untuk berinteraksi melalui internet."
+question:"27. Media sosial adalah...",
+options:["Media komunikasi online","Perangkat keras","Kabel jaringan","Mesin printer"],
+answer:"A",
+explanation:"Media sosial digunakan untuk komunikasi online."
 },
 
 {
-question:"Ciri media sosial adalah....",
-options:["Dapat berinteraksi","Tidak bisa online","Tidak ada pengguna","Tidak memakai internet"],
-answer:"Dapat berinteraksi",
-explanation:"Media sosial memungkinkan interaksi antar pengguna."
+question:"28. Ciri media sosial adalah...",
+options:["Tidak bisa interaksi","Interaktif","Tidak ada pengguna","Offline"],
+answer:"B",
+explanation:"Media sosial bersifat interaktif."
 },
 
 {
-question:"Bullying adalah....",
-options:["Tindakan menyakiti orang lain","Kegiatan olahraga","Belajar kelompok","Menolong teman"],
-answer:"Tindakan menyakiti orang lain",
-explanation:"Bullying merupakan tindakan menyakiti fisik atau mental."
+question:"29. Bullying adalah...",
+options:["Kerja sama","Perundungan","Belajar kelompok","Diskusi"],
+answer:"B",
+explanation:"Bullying berarti perundungan."
 },
 
 {
-question:"Pasal dalam UU ITE mengatur tentang....",
-options:["Aktivitas elektronik","Cuaca","Olahraga","Pertanian"],
-answer:"Aktivitas elektronik",
-explanation:"UU ITE mengatur aktivitas dan informasi elektronik."
+question:"30. UU ITE mengatur tentang...",
+options:["Teknologi informasi","Olahraga","Kesehatan","Pertanian"],
+answer:"A",
+explanation:"UU ITE mengatur teknologi informasi dan transaksi elektronik."
 },
 
 {
-question:"Fungsi LOOKUP pada Excel adalah....",
-options:["Mencari data","Menghapus data","Menggambar tabel","Membuat video"],
-answer:"Mencari data",
-explanation:"LOOKUP digunakan mencari data tertentu."
+question:"31. Fungsi LOOKUP digunakan untuk...",
+options:["Mencari data","Menghapus data","Membuat gambar","Memainkan video"],
+answer:"A",
+explanation:"LOOKUP digunakan mencari data."
 },
 
 {
-question:"VLOOKUP digunakan untuk....",
-options:["Mencari data vertikal","Menggambar grafik","Menghapus sheet","Mematikan Excel"],
-answer:"Mencari data vertikal",
+question:"32. VLOOKUP digunakan untuk...",
+options:["Mencari data vertikal","Mencari warna","Menggambar tabel","Menghapus workbook"],
+answer:"A",
 explanation:"VLOOKUP mencari data secara vertikal."
 },
 
 {
-question:"Fungsi MATCH pada Excel adalah....",
-options:["Mencari posisi data","Menghapus workbook","Mengganti warna","Menambah gambar"],
-answer:"Mencari posisi data",
-explanation:"MATCH digunakan mencari posisi suatu data."
+question:"33. Fungsi MATCH digunakan untuk...",
+options:["Menentukan posisi data","Menghapus kolom","Mengganti warna","Menggambar grafik"],
+answer:"A",
+explanation:"MATCH digunakan mencari posisi data."
 },
 
 {
-question:"Yang termasuk fitur Excel adalah....",
-options:["Formula Bar","Brush Tool","Timeline","Layer"],
-answer:"Formula Bar",
-explanation:"Formula Bar merupakan fitur di Excel."
+question:"34. Fitur Excel untuk membuat grafik adalah...",
+options:["Chart","Shapes","Review","Mailing"],
+answer:"A",
+explanation:"Chart digunakan membuat grafik."
 },
 
 {
-question:"Blockly Games digunakan untuk....",
-options:["Belajar coding","Mengedit foto","Membuat musik","Menonton film"],
-answer:"Belajar coding",
-explanation:"Blockly Games membantu belajar pemrograman."
+question:"35. Blockly Games berfungsi untuk...",
+options:["Belajar coding","Menonton video","Membuat surat","Mengedit foto"],
+answer:"A",
+explanation:"Blockly Games membantu belajar coding."
 },
 
 {
-question:"Cara mengganti background di Scratch adalah....",
-options:["Klik Choose a Backdrop","Klik Save","Klik Zoom","Klik Delete"],
-answer:"Klik Choose a Backdrop",
-explanation:"Background diubah melalui menu Choose a Backdrop."
+question:"36. Cara mengganti background di Scratch adalah...",
+options:["Choose a Backdrop","Delete Sprite","Save File","Duplicate"],
+answer:"A",
+explanation:"Background diganti melalui Choose a Backdrop."
 },
 
 {
-question:"Teknologi digital memudahkan....",
-options:["Komunikasi","Tidur","Berjalan","Makan"],
-answer:"Komunikasi",
-explanation:"Teknologi digital membantu komunikasi lebih cepat."
+question:"37. Teknologi digital mempermudah...",
+options:["Komunikasi","Kemacetan","Polusi","Kerusakan"],
+answer:"A",
+explanation:"Teknologi digital mempermudah komunikasi."
 },
 
 {
-question:"Data adalah....",
-options:["Kumpulan fakta","Kumpulan suara","Kumpulan gambar","Kumpulan lagu"],
-answer:"Kumpulan fakta",
-explanation:"Data merupakan fakta mentah yang dapat diolah."
+question:"38. Data adalah...",
+options:["Fakta mentah","Permainan","Gambar acak","Suara"],
+answer:"A",
+explanation:"Data merupakan fakta mentah."
 },
 
 {
-question:"Cara membuka Excel yang salah adalah....",
-options:["Mematikan komputer","Klik Start","Klik ikon Excel","Cari di Search"],
-answer:"Mematikan komputer",
-explanation:"Mematikan komputer bukan cara membuka Excel."
+question:"39. Cara membuka Excel yang salah adalah...",
+options:["Melalui Start Menu","Klik file Excel","Melalui Paint","Search Excel"],
+answer:"C",
+explanation:"Paint bukan aplikasi untuk membuka Excel."
 },
 
 {
-question:"Dampak link berbahaya adalah....",
-options:["Pencurian data","Menambah RAM","Menghemat baterai","Mempercepat komputer"],
-answer:"Pencurian data",
-explanation:"Link berbahaya dapat mencuri data pengguna."
+question:"40. Dampak link berbahaya adalah...",
+options:["Komputer aman","Pencurian data","Internet cepat","Memori bertambah"],
+answer:"B",
+explanation:"Link berbahaya dapat mencuri data."
 }
 
 ];
 
 let currentQuestion = 0;
-let userAnswers = Array(questions.length).fill(null);
+let answers = new Array(questions.length).fill(null);
 
-const questionNumber = document.getElementById("question-number");
-const questionText = document.getElementById("question");
-const optionsDiv = document.getElementById("options");
-const progressBar = document.getElementById("progressBar");
+const quizContainer = document.getElementById("quiz-container");
 
 function loadQuestion(){
 
 const q = questions[currentQuestion];
 
-questionNumber.innerHTML = `Soal ${currentQuestion + 1} dari ${questions.length}`;
-questionText.innerHTML = q.question;
+let html = `
+<div class="question-box">
+<div class="question">${q.question}</div>
+`;
 
-optionsDiv.innerHTML = "";
+q.options.forEach((opt,index)=>{
 
-q.options.forEach(option => {
+const letter = ["A","B","C","D"][index];
 
-const optionDiv = document.createElement("div");
-optionDiv.classList.add("option");
-
-optionDiv.innerHTML = `
-<label>
-<input type="radio" name="option" value="${option}"
-${userAnswers[currentQuestion] === option ? "checked" : ""}
->
-${option}
+html += `
+<label class="option">
+<input type="radio" name="answer" value="${letter}"
+${answers[currentQuestion]===letter ? "checked":""}>
+${letter}. ${opt}
 </label>
 `;
 
-optionDiv.onclick = () => {
-document.querySelectorAll('input[name="option"]').forEach(r=>r.checked=false);
-optionDiv.querySelector('input').checked=true;
-userAnswers[currentQuestion]=option;
-};
-
-optionsDiv.appendChild(optionDiv);
-
 });
 
+html += `</div>`;
+
+quizContainer.innerHTML = html;
+
 updateProgress();
+
+document.querySelectorAll('input[name="answer"]').forEach(input=>{
+input.addEventListener('change',()=>{
+answers[currentQuestion]=input.value;
+});
+});
+
 }
 
 function nextQuestion(){
-if(currentQuestion < questions.length -1){
+if(currentQuestion < questions.length-1){
 currentQuestion++;
 loadQuestion();
 }
@@ -600,87 +521,79 @@ loadQuestion();
 }
 
 function updateProgress(){
-const progress = ((currentQuestion+1)/questions.length)*100;
-progressBar.style.width = progress + "%";
+const answered = answers.filter(a=>a!==null).length;
+const percent = (answered/questions.length)*100;
+document.getElementById("progressBar").style.width = percent+"%";
 }
 
 function submitQuiz(){
 
-let correct = 0;
-let wrong = 0;
-
-let reviewHTML = "";
+let score = 0;
+let wrongHTML = "";
 
 questions.forEach((q,index)=>{
 
-const user = userAnswers[index];
-
-if(user === q.answer){
-correct++;
+if(answers[index]===q.answer){
+score++;
 }else{
-wrong++;
 
-reviewHTML += `
+wrongHTML += `
 <div class="review-box">
-<div class="review-question">
 <h3>Soal ${index+1}</h3>
-<p>${q.question}</p>
-
-<p class="wrong">
-Jawaban Anda: ${user ? user : "Tidak dijawab"}
-</p>
-
-<p class="correct">
-Jawaban Benar: ${q.answer}
-</p>
-
-<div class="explanation">
-<b>Pembahasan:</b> ${q.explanation}
-</div>
-
-</div>
+<p><b>${q.question}</b></p>
+<p class="wrong">Jawaban Anda: ${answers[index] || "Tidak dijawab"}</p>
+<p class="correct">Jawaban Benar: ${q.answer}</p>
+<p><b>Pembahasan:</b> ${q.explanation}</p>
 </div>
 `;
+
 }
 
 });
 
-const score = Math.round((correct/questions.length)*100);
+const finalScore = Math.round((score/questions.length)*100);
 
-document.getElementById("quiz-container").style.display="none";
-document.getElementById("result-container").style.display="block";
+document.getElementById("result").style.display="block";
 
-document.getElementById("score").innerHTML = score;
-document.getElementById("summary").innerHTML =
-`Benar: ${correct} | Salah: ${wrong}`;
+document.getElementById("result").innerHTML = `
+<h2>Hasil Ujian</h2>
+<br>
+<p><b>Nilai Akhir:</b> ${finalScore}</p>
+<p><b>Benar:</b> ${score}</p>
+<p><b>Salah:</b> ${questions.length-score}</p>
+${wrongHTML}
+`;
 
-document.getElementById("review").innerHTML = reviewHTML;
+window.scrollTo(0,document.body.scrollHeight);
 
 }
 
 loadQuestion();
 
-let timeLeft = 60 * 60;
 
-function updateTimer(){
+// TIMER
 
-let minutes = Math.floor(timeLeft / 60);
-let seconds = timeLeft % 60;
+let time = 60 * 60;
+
+const timer = document.getElementById("timer");
+
+const countdown = setInterval(()=>{
+
+let minutes = Math.floor(time/60);
+let seconds = time%60;
 
 seconds = seconds < 10 ? "0"+seconds : seconds;
 
-document.getElementById("timer").innerHTML =
-`${minutes}:${seconds}`;
+timer.innerHTML = `${minutes}:${seconds}`;
 
-if(timeLeft > 0){
-timeLeft--;
-}else{
+time--;
+
+if(time < 0){
+clearInterval(countdown);
 submitQuiz();
 }
 
-}
-
-setInterval(updateTimer,1000);
+},1000);
 
 </script>
 
