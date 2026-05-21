@@ -3,356 +3,492 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulasi Ujian Informatika</title>
+  <title>Kuis Informatika Kelas VIII</title>
   <style>
-    body{
+    body {
       font-family: Arial, sans-serif;
-      background:#f4f4f4;
-      margin:0;
-      padding:20px;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 20px;
     }
 
-    .container{
-      max-width:900px;
-      margin:auto;
-      background:white;
-      padding:20px;
-      border-radius:10px;
-      box-shadow:0 0 10px rgba(0,0,0,0.2);
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    h1{
-      text-align:center;
-      color:#0b5394;
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
     }
 
-    .info{
-      margin-bottom:20px;
-      line-height:1.7;
+    .info {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
     }
 
-    .soal{
-      margin-bottom:25px;
-      padding:15px;
-      border:1px solid #ddd;
-      border-radius:8px;
-      background:#fafafa;
+    .question {
+      margin-bottom: 25px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #f9fafb;
+      border-left: 5px solid #2563eb;
     }
 
-    .soal p{
-      font-weight:bold;
+    .question h3 {
+      margin-top: 0;
+      color: #111827;
     }
 
-    label{
-      display:block;
-      margin:6px 0;
-      cursor:pointer;
+    .level {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 10px;
     }
 
-    button{
-      width:100%;
-      padding:15px;
-      background:#0b5394;
-      color:white;
-      border:none;
-      border-radius:8px;
-      font-size:18px;
-      cursor:pointer;
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
     }
 
-    button:hover{
-      background:#073763;
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
     }
 
-    .benar{
-      background:#c6efce;
-      padding:5px;
-      border-radius:5px;
+    button:hover {
+      background: #1d4ed8;
     }
 
-    .salah{
-      background:#ffc7ce;
-      padding:5px;
-      border-radius:5px;
+    .correct {
+      background: #dcfce7;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      color: #166534;
     }
 
-    #hasil{
-      margin-top:20px;
-      font-size:22px;
-      text-align:center;
-      font-weight:bold;
+    .wrong {
+      background: #fee2e2;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      color: #991b1b;
+    }
+
+    .score {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e3a8a;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Simulasi Ujian Informatika</h1>
-
+  <h1>Latihan Soal Informatika Kelas VIII</h1>
   <div class="info">
-    <b>Mata Pelajaran:</b> Informatika<br>
-    <b>Kelas:</b> VII Semester 2<br>
-    <b>Jumlah Soal:</b> 40 Pilihan Ganda
+    SMP Negeri 21 Kota Bengkulu | 40 Soal Pilihan Ganda & Kompleks
   </div>
 
-  <form id="quiz"></form>
+  <form id="quizForm"></form>
 
-  <button onclick="cekJawaban()">Koreksi Jawaban</button>
+  <button onclick="submitQuiz()">Submit Jawaban</button>
 
-  <div id="hasil"></div>
+  <div id="result" class="score"></div>
 </div>
 
 <script>
-const soal = [
-{
-t:"Apa pertemuan antara baris dan kolom pada Excel disebut?",
-o:["Worksheet","Cell","Ribbon","Formula"],
-j:"Cell"
-},
-{
-t:"Baris pada Excel ditandai dengan?",
-o:["Huruf","Simbol","Angka","Warna"],
-j:"Angka"
-},
-{
-t:"Kolom pada Excel ditandai dengan?",
-o:["Huruf","Angka","Simbol","Garis"],
-j:"Huruf"
-},
-{
-t:"Penulisan rumus di Excel harus diawali dengan?",
-o:["#","=","+","@"],
-j:"="
-},
-{
-t:"Rumus untuk menjumlahkan data adalah?",
-o:["COUNT","SUM","MAX","MIN"],
-j:"SUM"
-},
-{
-t:"Rumus untuk mencari rata-rata adalah?",
-o:["AVERAGE","COUNT","SUM","IF"],
-j:"AVERAGE"
-},
-{
-t:"Rumus untuk mencari nilai terbesar adalah?",
-o:["MAX","MIN","COUNT","SUM"],
-j:"MAX"
-},
-{
-t:"Rumus untuk mencari nilai terkecil adalah?",
-o:["MIN","MAX","SUM","COUNT"],
-j:"MIN"
-},
-{
-t:"Rumus COUNT digunakan untuk?",
-o:["Menghitung jumlah data","Menjumlahkan data","Mencari rata-rata","Mencari nilai terbesar"],
-j:"Menghitung jumlah data"
-},
-{
-t:"SUMIF digunakan untuk?",
-o:["Menghitung data","Menjumlah data dengan syarat","Mencari nilai terbesar","Membagi data"],
-j:"Menjumlah data dengan syarat"
-},
-{
-t:"Analisis data bertujuan untuk?",
-o:["Menghapus data","Memahami informasi","Merusak data","Menyimpan game"],
-j:"Memahami informasi"
-},
-{
-t:"Manfaat analisis data dalam kehidupan sehari-hari adalah?",
-o:["Membantu mengambil keputusan","Menghapus file","Merusak komputer","Menggambar"],
-j:"Membantu mengambil keputusan"
-},
-{
-t:"Aplikasi yang digunakan untuk membuat animasi blok adalah?",
-o:["Word","Scratch","Paint","Excel"],
-j:"Scratch"
-},
-{
-t:"Blok gerakan pada Scratch disebut?",
-o:["Motion","Sound","Looks","Control"],
-j:"Motion"
-},
-{
-t:"Blok suara pada Scratch disebut?",
-o:["Looks","Sound","Events","Motion"],
-j:"Sound"
-},
-{
-t:"Teknologi dapat memberikan dampak positif berupa?",
-o:["Malas belajar","Mempermudah komunikasi","Cyberbullying","Kecanduan game"],
-j:"Mempermudah komunikasi"
-},
-{
-t:"Contoh dampak negatif teknologi adalah?",
-o:["Belajar online","Cyberbullying","Mencari informasi","Video call"],
-j:"Cyberbullying"
-},
-{
-t:"Penggunaan media sosial yang bijak adalah?",
-o:["Menghina teman","Menyebar hoax","Menggunakan dengan sopan","Membully orang"],
-j:"Menggunakan dengan sopan"
-},
-{
-t:"Apa yang dimaksud cyberbullying?",
-o:["Belajar online","Perundungan di dunia maya","Belanja online","Main game"],
-j:"Perundungan di dunia maya"
-},
-{
-t:"Jejak digital adalah?",
-o:["Bekas sepatu","Rekam aktivitas di internet","File kosong","Program komputer"],
-j:"Rekam aktivitas di internet"
-},
-{
-t:"Contoh jejak digital adalah?",
-o:["Postingan media sosial","Sepeda","Pensil","Buku"],
-j:"Postingan media sosial"
-},
-{
-t:"Workbook pada Excel adalah?",
-o:["Kumpulan worksheet","Kolom","Baris","Cell"],
-j:"Kumpulan worksheet"
-},
-{
-t:"Bagian tempat mengetik rumus disebut?",
-o:["Formula Bar","Title Bar","Ribbon","Sheet"],
-j:"Formula Bar"
-},
-{
-t:"Ctrl + C digunakan untuk?",
-o:["Menempel","Menyalin","Menghapus","Menyimpan"],
-j:"Menyalin"
-},
-{
-t:"Ctrl + V digunakan untuk?",
-o:["Menempel","Menyalin","Menyimpan","Membuka"],
-j:"Menempel"
-},
-{
-t:"Data angka di Excel biasanya rata?",
-o:["Kiri","Kanan","Tengah","Atas"],
-j:"Kanan"
-},
-{
-t:"Data teks di Excel biasanya rata?",
-o:["Kanan","Kiri","Bawah","Atas"],
-j:"Kiri"
-},
-{
-t:"Scratch menggunakan sistem pemrograman?",
-o:["Mengetik kode penuh","Blok","Bahasa mesin","Biner"],
-j:"Blok"
-},
-{
-t:"Blok kontrol pada Scratch berfungsi untuk?",
-o:["Mengatur alur program","Menggambar","Menyimpan file","Menulis teks"],
-j:"Mengatur alur program"
-},
-{
-t:"Internet yang digunakan berlebihan dapat menyebabkan?",
-o:["Rajin belajar","Kecanduan","Semangat olahraga","Tidur cepat"],
-j:"Kecanduan"
-},
-{
-t:"Media sosial dapat digunakan untuk?",
-o:["Belajar dan komunikasi","Membully","Menipu","Menyebar hoax"],
-j:"Belajar dan komunikasi"
-},
-{
-t:"Contoh aplikasi spreadsheet adalah?",
-o:["Excel","Paint","Scratch","Chrome"],
-j:"Excel"
-},
-{
-t:"File Excel memiliki ekstensi?",
-o:[".docx",".xlsx",".ppt",".html"],
-j:".xlsx"
-},
-{
-t:"Apa fungsi MIN pada Excel?",
-o:["Nilai terbesar","Nilai terkecil","Jumlah data","Rata-rata"],
-j:"Nilai terkecil"
-},
-{
-t:"Apa fungsi MAX pada Excel?",
-o:["Nilai terbesar","Nilai terkecil","Jumlah data","Rata-rata"],
-j:"Nilai terbesar"
-},
-{
-t:"Mengunggah foto sembarangan di internet dapat mempengaruhi?",
-o:["Jejak digital","Kesehatan","Olahraga","Makanan"],
-j:"Jejak digital"
-},
-{
-t:"Sikap yang baik di media sosial adalah?",
-o:["Sopan santun","Menghina","Menyebar fitnah","Marah-marah"],
-j:"Sopan santun"
-},
-{
-t:"Cyberbullying dapat menyebabkan korban merasa?",
-o:["Bahagia","Sedih","Semangat","Biasa saja"],
-j:"Sedih"
-},
-{
-t:"Teknologi informasi membantu manusia dalam?",
-o:["Komunikasi","Memperlambat pekerjaan","Menghapus data","Merusak alat"],
-j:"Komunikasi"
-},
-{
-t:"Scratch cocok digunakan untuk belajar?",
-o:["Animasi dan coding","Olahraga","Memasak","Menggambar manual"],
-j:"Animasi dan coding"
-}
+const questions = [
+  {
+    q: "Bahasa pemrograman prosedural mulai berkembang pada tahun...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["1950-an", "1980-an", "2000-an", "2015-an"],
+    answer: [2]
+  },
+  {
+    q: "Data pada Microsoft Excel disusun dalam bentuk...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["Baris dan kolom", "Paragraf", "Slide", "Grafik"],
+    answer: [2]
+  },
+  {
+    q: "Pengertian sel (cell) pada Microsoft Excel adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Gabungan workbook", "Pertemuan baris dan kolom", "Nama file", "Jenis rumus"],
+    answer: [2]
+  },
+  {
+    q: "Generalisasi dalam berpikir komputasional berarti...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Mencari pola umum", "Menghapus data", "Menggambar tabel", "Menulis kode"],
+    answer: [2]
+  },
+  {
+    q: "Mengurutkan data dari kecil ke besar disebut...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Descending", "Ascending", "Filtering", "Editing"],
+    answer: [2]
+  },
+  {
+    q: "Tujuan visualisasi data adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Memperumit data", "Mempermudah memahami data", "Menghapus data", "Mengunci data"],
+    answer: [2]
+  },
+  {
+    q: "Transformasi data adalah proses...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Mengubah bentuk data", "Menghapus file", "Mencetak dokumen", "Menyalin gambar"],
+    answer: [2]
+  },
+  {
+    q: "Fitur Shapes pada Microsoft Office digunakan untuk...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["Membuat bentuk", "Menghapus slide", "Menghitung data", "Menyimpan file"],
+    answer: [2]
+  },
+  {
+    q: "Tujuan analisis data adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Menemukan informasi", "Menghapus data", "Membuat virus", "Menggambar logo"],
+    answer: [2]
+  },
+  {
+    q: "Database adalah...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["Kumpulan data terorganisir", "Perangkat keras", "Aplikasi gambar", "Bahasa pemrograman"],
+    answer: [2]
+  },
+  {
+    q: "Alamat website Scratch adalah...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["scratch.mit.edu", "google.com", "office.com", "youtube.com"],
+    answer: [2]
+  },
+  {
+    q: "Scratch digunakan untuk...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Membuat animasi dan game", "Mengetik dokumen", "Menggambar manual", "Menghapus data"],
+    answer: [2]
+  },
+  {
+    q: "Program aplikasi pada sistem komputer berfungsi untuk...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Membantu pekerjaan pengguna", "Menghidupkan CPU", "Membersihkan monitor", "Mengganti keyboard"],
+    answer: [2]
+  },
+  {
+    q: "Algoritma adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Langkah-langkah menyelesaikan masalah", "Jenis komputer", "Program virus", "Perangkat keras"],
+    answer: [2]
+  },
+  {
+    q: "Salah satu kekurangan Scratch adalah...",
+    level: "C3 - Menganalisis",
+    type: "single",
+    options: ["Kurang cocok untuk program kompleks", "Sulit dipasang", "Tidak memiliki gambar", "Tidak bisa online"],
+    answer: [2]
+  },
+  {
+    q: "Istilah komputer berasal dari kata compute yang berarti...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["Menghitung", "Mengetik", "Menggambar", "Mencetak"],
+    answer: [2]
+  },
+  {
+    q: "Informatika adalah ilmu yang mempelajari...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Pengolahan informasi", "Olahraga", "Kesehatan", "Pertanian"],
+    answer: [2]
+  },
+  {
+    q: "Contoh software adalah...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["Microsoft Word", "Keyboard", "Mouse", "Printer"],
+    answer: [2]
+  },
+  {
+    q: "Tanda '=' pada Excel digunakan untuk...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Memulai rumus", "Menghapus data", "Mengganti warna", "Membuat tabel"],
+    answer: [2]
+  },
+  {
+    q: "Workbook pada Excel adalah...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["Buku kerja", "Kolom", "Baris", "Grafik"],
+    answer: [2]
+  },
+  {
+    q: "Penulisan rumus Excel yang benar adalah...",
+    level: "C3 - Menganalisis",
+    type: "single",
+    options: ["=SUM(A1:A5)", "SUM(A1:A5)", "#SUM(A1:A5)", "@SUM(A1:A5)"],
+    answer: [2]
+  },
+  {
+    q: "Langkah awal membuat program adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Menentukan masalah", "Mencetak file", "Mematikan komputer", "Menghapus folder"],
+    answer: [2]
+  },
+  {
+    q: "Dampak bullying digital adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Menurunkan kepercayaan diri", "Menambah teman", "Meningkatkan nilai", "Menghemat waktu"],
+    answer: [2]
+  },
+  {
+    q: "UU yang mengatur cyberlaw di Indonesia adalah...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["UU ITE", "UU Pajak", "UU Sekolah", "UU Lalu Lintas"],
+    answer: [2]
+  },
+  {
+    q: "Dunia virtual adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Lingkungan digital berbasis internet", "Dunia nyata", "Lapangan olahraga", "Perpustakaan"],
+    answer: [2]
+  },
+  {
+    q: "Contoh content communities adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["YouTube", "Excel", "Paint", "Word"],
+    answer: [2]
+  },
+  {
+    q: "Media sosial adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Sarana komunikasi online", "Mesin hitung", "Perangkat keras", "Bahasa pemrograman"],
+    answer: [2]
+  },
+  {
+    q: "Ciri media sosial adalah...",
+    level: "C3 - Menganalisis",
+    type: "single",
+    options: ["Interaktif", "Tidak dapat diakses", "Tidak ada pengguna", "Tidak online"],
+    answer: [2]
+  },
+  {
+    q: "Bullying adalah...",
+    level: "C2 - Memahami",
+    type: "single",
+    options: ["Perilaku menyakiti orang lain", "Belajar kelompok", "Kerja sama", "Olahraga"],
+    answer: [2]
+  },
+  {
+    q: "Pasal yang mengatur pencemaran nama baik pada UU ITE adalah...",
+    level: "C1 - Mengingat",
+    type: "single",
+    options: ["Pasal 27", "Pasal 1", "Pasal 5", "Pasal 10"],
+    answer: [2]
+  },
+
+  {
+    q: "Fungsi LOOKUP pada Excel digunakan untuk... (Pilih 2 jawaban)",
+    level: "C2 - Memahami",
+    type: "multiple",
+    options: ["Mencari data", "Mengambil nilai tertentu", "Menggambar grafik", "Menghapus tabel"],
+    answer: [1,2]
+  },
+  {
+    q: "Pernyataan yang benar tentang VLOOKUP adalah... (Pilih 2 jawaban)",
+    level: "C3 - Menganalisis",
+    type: "multiple",
+    options: ["Mencari data vertikal", "Mengambil data dari tabel", "Menghapus workbook", "Mengganti warna sel"],
+    answer: [1,2]
+  },
+  {
+    q: "Fungsi MATCH pada Excel adalah... (Pilih 2 jawaban)",
+    level: "C3 - Menganalisis",
+    type: "multiple",
+    options: ["Mencari posisi data", "Mengembalikan nomor urut", "Menggambar bentuk", "Membuat slide"],
+    answer: [1,2]
+  },
+  {
+    q: "Berikut yang termasuk fitur Excel adalah... (Pilih 2 jawaban)",
+    level: "C1 - Mengingat",
+    type: "multiple",
+    options: ["Formula", "Chart", "Brush", "Timeline video"],
+    answer: [1,2]
+  },
+  {
+    q: "Blockly Games digunakan untuk... (Pilih 2 jawaban)",
+    level: "C2 - Memahami",
+    type: "multiple",
+    options: ["Belajar coding", "Melatih logika", "Mencetak dokumen", "Mengedit video"],
+    answer: [1,2]
+  },
+  {
+    q: "Cara mengganti background di Scratch adalah... (Pilih 2 jawaban)",
+    level: "C2 - Memahami",
+    type: "multiple",
+    options: ["Klik Backdrop", "Pilih background", "Cabut keyboard", "Tutup aplikasi"],
+    answer: [1,2]
+  },
+  {
+    q: "Yang termasuk teknologi digital adalah... (Pilih 2 jawaban)",
+    level: "C3 - Menganalisis",
+    type: "multiple",
+    options: ["Smartphone", "Internet", "Mesin tik manual", "Kertas"],
+    answer: [1,2]
+  },
+  {
+    q: "Data adalah... (Pilih 2 jawaban)",
+    level: "C2 - Memahami",
+    type: "multiple",
+    options: ["Fakta", "Keterangan", "Virus", "Program game"],
+    answer: [1,2]
+  },
+  {
+    q: "Cara membuka Excel yang salah adalah... (Pilih 2 jawaban)",
+    level: "C2 - Memahami",
+    type: "multiple",
+    options: ["Menekan tombol power monitor saja", "Mencabut kabel CPU", "Klik Start > Excel", "Double klik ikon Excel"],
+    answer: [1,2]
+  },
+  {
+    q: "Dampak link berbahaya adalah... (Pilih 2 jawaban)",
+    level: "C2 - Memahami",
+    type: "multiple",
+    options: ["Pencurian data", "Masuknya virus", "Menambah keamanan", "Mempercepat internet"],
+    answer: [1,2]
+  }
 ];
 
-const quiz = document.getElementById("quiz");
+function shuffleArray(array){
+  for(let i = array.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
-soal.forEach((s,index)=>{
-  let div = document.createElement("div");
-  div.className = "soal";
+questions.forEach(question => {
+  let combined = question.options.map((option, index) => ({
+    text: option,
+    correct: question.answer.includes(index)
+  }));
 
-  let html = `<p>${index+1}. ${s.t}</p>`;
+  shuffleArray(combined);
 
-  s.o.forEach(opt=>{
-    html += `
-      <label>
-        <input type="radio" name="soal${index}" value="${opt}">
-        ${opt}
-      </label>
-    `;
-  });
-
-  div.innerHTML = html;
-  quiz.appendChild(div);
+  question.options = combined.map(item => item.text);
+  question.answer = combined
+    .map((item, index) => item.correct ? index : null)
+    .filter(item => item !== null);
 });
 
-function cekJawaban(){
-  let benar = 0;
+const form = document.getElementById('quizForm');
 
-  soal.forEach((s,index)=>{
-    const pilihan = document.querySelector(`input[name="soal${index}"]:checked`);
-    const labels = document.querySelectorAll(`input[name="soal${index}"]`);
+questions.forEach((item, index) => {
+  const div = document.createElement('div');
+  div.className = 'question';
 
-    labels.forEach(l=>{
-      l.parentElement.classList.remove("benar","salah");
+  let html = `<h3>${index + 1}. ${item.q}</h3>`;
+  html += `<div class="level">${item.level}</div>`;
 
-      if(l.value === s.j){
-        l.parentElement.classList.add("benar");
-      }
-
-      if(pilihan && l.checked && l.value !== s.j){
-        l.parentElement.classList.add("salah");
-      }
-    });
-
-    if(pilihan && pilihan.value === s.j){
-      benar++;
+  item.options.forEach((opt, i) => {
+    if(item.type === 'single'){
+      html += `
+        <label>
+          <input type="radio" name="q${index}" value="${i}">
+          ${opt}
+        </label>`;
+    } else {
+      html += `
+        <label>
+          <input type="checkbox" name="q${index}" value="${i}">
+          ${opt}
+        </label>`;
     }
   });
 
-  document.getElementById("hasil").innerHTML =
-    `Nilai Anda: ${benar}/40`;
+  html += `<div id="feedback${index}"></div>`;
+
+  div.innerHTML = html;
+  form.appendChild(div);
+});
+
+function arraysEqual(a,b){
+  return JSON.stringify(a.sort()) === JSON.stringify(b.sort());
+}
+
+function submitQuiz(){
+  let score = 0;
+
+  questions.forEach((item, index) => {
+    let selected = [];
+
+    if(item.type === 'single'){
+      const checked = document.querySelector(`input[name=q${index}]:checked`);
+      if(checked) selected.push(parseInt(checked.value));
+    } else {
+      document.querySelectorAll(`input[name=q${index}]:checked`).forEach(el => {
+        selected.push(parseInt(el.value));
+      });
+    }
+
+    const feedback = document.getElementById(`feedback${index}`);
+
+    if(arraysEqual(selected, item.answer)){
+      score++;
+      feedback.innerHTML = `<div class="correct">✔ Jawaban Benar</div>`;
+    } else {
+      let correctAnswers = item.answer.map(i => item.options[i]).join(', ');
+      feedback.innerHTML = `
+        <div class="wrong">
+          ✘ Jawaban Salah <br>
+          Jawaban benar: <b>${correctAnswers}</b>
+        </div>`;
+    }
+  });
+
+  let finalScore = Math.round((score / questions.length) * 100);
+  document.getElementById('result').innerHTML = `Nilai Anda: ${finalScore} / 100`;
+
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
 </script>
 
