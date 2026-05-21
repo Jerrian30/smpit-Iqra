@@ -1,76 +1,70 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Simulasi Ujian Informatika Kelas 7</title>
+
   <style>
-    body {
+    body{
       font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      margin: 0;
-      padding: 20px;
+      background:#f2f2f2;
+      margin:0;
+      padding:20px;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .container{
+      max-width:900px;
+      margin:auto;
+      background:white;
+      padding:25px;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.2);
     }
 
-    h1 {
-      text-align: center;
-      color: #333;
+    h1{
+      text-align:center;
+      color:#333;
     }
 
-    .question {
-      margin-bottom: 25px;
-      padding: 15px;
-      border-bottom: 1px solid #ddd;
+    .soal{
+      margin-bottom:25px;
+      padding:15px;
+      border-bottom:1px solid #ddd;
     }
 
-    .question h3 {
-      margin-bottom: 10px;
+    .soal p{
+      font-weight:bold;
     }
 
-    label {
-      display: block;
-      margin: 5px 0;
-      cursor: pointer;
+    label{
+      display:block;
+      margin:8px 0;
+      cursor:pointer;
     }
 
-    button {
-      display: block;
-      margin: 20px auto;
-      padding: 12px 25px;
-      border: none;
-      background: #007bff;
-      color: white;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
+    button{
+      display:block;
+      margin:20px auto;
+      padding:12px 25px;
+      border:none;
+      background:#007bff;
+      color:white;
+      border-radius:8px;
+      font-size:16px;
+      cursor:pointer;
     }
 
-    button:hover {
-      background: #0056b3;
+    button:hover{
+      background:#0056b3;
     }
 
-    #result {
-      text-align: center;
-      font-size: 22px;
-      margin-top: 20px;
-      font-weight: bold;
-    }
-
-    .correct {
-      color: green;
-    }
-
-    .wrong {
-      color: red;
+    #hasil{
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+      margin-top:20px;
+      color:green;
     }
   </style>
 </head>
@@ -79,301 +73,401 @@
 <div class="container">
   <h1>Simulasi Ujian Informatika Kelas 7</h1>
 
-  <form id="quizForm"></form>
+  <form id="quizForm">
 
-  <button onclick="checkAnswers()">Selesai Ujian</button>
+    <!-- SOAL 1 -->
+    <div class="soal">
+      <p>1. Data berupa angka disebut data...</p>
+      <label><input type="radio" name="q1" value="a"> Numerik</label>
+      <label><input type="radio" name="q1" value="b"> Gambar</label>
+      <label><input type="radio" name="q1" value="c"> Audio</label>
+      <label><input type="radio" name="q1" value="d"> Video</label>
+    </div>
 
-  <div id="result"></div>
+    <!-- SOAL 2 -->
+    <div class="soal">
+      <p>2. Sistem bilangan komputer menggunakan...</p>
+      <label><input type="radio" name="q2" value="a"> Desimal</label>
+      <label><input type="radio" name="q2" value="b"> Biner</label>
+      <label><input type="radio" name="q2" value="c"> Romawi</label>
+      <label><input type="radio" name="q2" value="d"> Pecahan</label>
+    </div>
+
+    <!-- SOAL 3 -->
+    <div class="soal">
+      <p>3. Struktur data yang menyimpan banyak data dalam satu variabel disebut...</p>
+      <label><input type="radio" name="q3" value="a"> Loop</label>
+      <label><input type="radio" name="q3" value="b"> Array</label>
+      <label><input type="radio" name="q3" value="c"> Operator</label>
+      <label><input type="radio" name="q3" value="d"> Variabel</label>
+    </div>
+
+    <!-- SOAL 4 -->
+    <div class="soal">
+      <p>4. Diagram yang menunjukkan hubungan antar titik disebut...</p>
+      <label><input type="radio" name="q4" value="a"> Graph</label>
+      <label><input type="radio" name="q4" value="b"> Tabel</label>
+      <label><input type="radio" name="q4" value="c"> List</label>
+      <label><input type="radio" name="q4" value="d"> File</label>
+    </div>
+
+    <!-- SOAL 5 -->
+    <div class="soal">
+      <p>5. Visualisasi data yang cocok untuk perbandingan adalah...</p>
+      <label><input type="radio" name="q5" value="a"> Diagram batang</label>
+      <label><input type="radio" name="q5" value="b"> Video</label>
+      <label><input type="radio" name="q5" value="c"> Audio</label>
+      <label><input type="radio" name="q5" value="d"> Animasi</label>
+    </div>
+
+    <!-- SOAL 6 -->
+    <div class="soal">
+      <p>6. Membaca informasi dari grafik disebut...</p>
+      <label><input type="radio" name="q6" value="a"> Menulis data</label>
+      <label><input type="radio" name="q6" value="b"> Interpretasi data</label>
+      <label><input type="radio" name="q6" value="c"> Menggambar</label>
+      <label><input type="radio" name="q6" value="d"> Menghapus</label>
+    </div>
+
+    <!-- SOAL 7 -->
+    <div class="soal">
+      <p>7. Mengumpulkan data dengan bertanya langsung disebut...</p>
+      <label><input type="radio" name="q7" value="a"> Observasi</label>
+      <label><input type="radio" name="q7" value="b"> Survei</label>
+      <label><input type="radio" name="q7" value="c"> Editing</label>
+      <label><input type="radio" name="q7" value="d"> Coding</label>
+    </div>
+
+    <!-- SOAL 8 -->
+    <div class="soal">
+      <p>8. Tempat penyimpanan data terstruktur disebut...</p>
+      <label><input type="radio" name="q8" value="a"> Database</label>
+      <label><input type="radio" name="q8" value="b"> Browser</label>
+      <label><input type="radio" name="q8" value="c"> Keyboard</label>
+      <label><input type="radio" name="q8" value="d"> Mouse</label>
+    </div>
+
+    <!-- SOAL 9 -->
+    <div class="soal">
+      <p>9. Mengurutkan data disebut...</p>
+      <label><input type="radio" name="q9" value="a"> Sorting</label>
+      <label><input type="radio" name="q9" value="b"> Typing</label>
+      <label><input type="radio" name="q9" value="c"> Drawing</label>
+      <label><input type="radio" name="q9" value="d"> Gaming</label>
+    </div>
+
+    <!-- SOAL 10 -->
+    <div class="soal">
+      <p>10. Software pengolah angka adalah...</p>
+      <label><input type="radio" name="q10" value="a"> Excel</label>
+      <label><input type="radio" name="q10" value="b"> Paint</label>
+      <label><input type="radio" name="q10" value="c"> Chrome</label>
+      <label><input type="radio" name="q10" value="d"> VLC</label>
+    </div>
+
+    <!-- SOAL 11 -->
+    <div class="soal">
+      <p>11. Langkah-langkah menyelesaikan masalah disebut...</p>
+      <label><input type="radio" name="q11" value="a"> Algoritma</label>
+      <label><input type="radio" name="q11" value="b"> Browser</label>
+      <label><input type="radio" name="q11" value="c"> Hardware</label>
+      <label><input type="radio" name="q11" value="d"> Folder</label>
+    </div>
+
+    <!-- SOAL 12 -->
+    <div class="soal">
+      <p>12. Struktur algoritma yang berjalan berurutan disebut...</p>
+      <label><input type="radio" name="q12" value="a"> Looping</label>
+      <label><input type="radio" name="q12" value="b"> Percabangan</label>
+      <label><input type="radio" name="q12" value="c"> Sekuensial</label>
+      <label><input type="radio" name="q12" value="d"> Random</label>
+    </div>
+
+    <!-- SOAL 13 -->
+    <div class="soal">
+      <p>13. Percabangan dalam algoritma menggunakan...</p>
+      <label><input type="radio" name="q13" value="a"> if-else</label>
+      <label><input type="radio" name="q13" value="b"> print</label>
+      <label><input type="radio" name="q13" value="c"> input</label>
+      <label><input type="radio" name="q13" value="d"> save</label>
+    </div>
+
+    <!-- SOAL 14 -->
+    <div class="soal">
+      <p>14. Perulangan dalam program disebut...</p>
+      <label><input type="radio" name="q14" value="a"> Looping</label>
+      <label><input type="radio" name="q14" value="b"> Typing</label>
+      <label><input type="radio" name="q14" value="c"> Browsing</label>
+      <label><input type="radio" name="q14" value="d"> Editing</label>
+    </div>
+
+    <!-- SOAL 15 -->
+    <div class="soal">
+      <p>15. Tempat menyimpan nilai dalam program disebut...</p>
+      <label><input type="radio" name="q15" value="a"> Variabel</label>
+      <label><input type="radio" name="q15" value="b"> Folder</label>
+      <label><input type="radio" name="q15" value="c"> CPU</label>
+      <label><input type="radio" name="q15" value="d"> Keyboard</label>
+    </div>
+
+    <!-- SOAL 16 -->
+    <div class="soal">
+      <p>16. Simbol + termasuk operator...</p>
+      <label><input type="radio" name="q16" value="a"> Logika</label>
+      <label><input type="radio" name="q16" value="b"> Aritmatika</label>
+      <label><input type="radio" name="q16" value="c"> Relasional</label>
+      <label><input type="radio" name="q16" value="d"> Perbandingan</label>
+    </div>
+
+    <!-- SOAL 17 -->
+    <div class="soal">
+      <p>17. Penulisan langkah program sederhana disebut...</p>
+      <label><input type="radio" name="q17" value="a"> Pseudocode</label>
+      <label><input type="radio" name="q17" value="b"> Browser</label>
+      <label><input type="radio" name="q17" value="c"> Driver</label>
+      <label><input type="radio" name="q17" value="d"> Shortcut</label>
+    </div>
+
+    <!-- SOAL 18 -->
+    <div class="soal">
+      <p>18. Diagram alur program disebut...</p>
+      <label><input type="radio" name="q18" value="a"> Flowchart</label>
+      <label><input type="radio" name="q18" value="b"> Grafik</label>
+      <label><input type="radio" name="q18" value="c"> Tabel</label>
+      <label><input type="radio" name="q18" value="d"> Slide</label>
+    </div>
+
+    <!-- SOAL 19 -->
+    <div class="soal">
+      <p>19. Contoh bahasa pemrograman adalah...</p>
+      <label><input type="radio" name="q19" value="a"> Python</label>
+      <label><input type="radio" name="q19" value="b"> Word</label>
+      <label><input type="radio" name="q19" value="c"> Excel</label>
+      <label><input type="radio" name="q19" value="d"> Canva</label>
+    </div>
+
+    <!-- SOAL 20 -->
+    <div class="soal">
+      <p>20. Pemrograman berorientasi objek disebut...</p>
+      <label><input type="radio" name="q20" value="a"> OOP</label>
+      <label><input type="radio" name="q20" value="b"> CPU</label>
+      <label><input type="radio" name="q20" value="c"> GUI</label>
+      <label><input type="radio" name="q20" value="d"> USB</label>
+    </div>
+
+    <!-- SOAL 21 -->
+    <div class="soal">
+      <p>21. Belajar online merupakan dampak ... informatika</p>
+      <label><input type="radio" name="q21" value="a"> Negatif</label>
+      <label><input type="radio" name="q21" value="b"> Positif</label>
+      <label><input type="radio" name="q21" value="c"> Buruk</label>
+      <label><input type="radio" name="q21" value="d"> Lemah</label>
+    </div>
+
+    <!-- SOAL 22 -->
+    <div class="soal">
+      <p>22. Penyebaran berita palsu disebut...</p>
+      <label><input type="radio" name="q22" value="a"> Hoax</label>
+      <label><input type="radio" name="q22" value="b"> Data</label>
+      <label><input type="radio" name="q22" value="c"> Grafik</label>
+      <label><input type="radio" name="q22" value="d"> Coding</label>
+    </div>
+
+    <!-- SOAL 23 -->
+    <div class="soal">
+      <p>23. Menggunakan internet dengan sopan termasuk...</p>
+      <label><input type="radio" name="q23" value="a"> Etika digital</label>
+      <label><input type="radio" name="q23" value="b"> Cybercrime</label>
+      <label><input type="radio" name="q23" value="c"> Hacking</label>
+      <label><input type="radio" name="q23" value="d"> Spam</label>
+    </div>
+
+    <!-- SOAL 24 -->
+    <div class="soal">
+      <p>24. Menjaga password termasuk...</p>
+      <label><input type="radio" name="q24" value="a"> Keamanan informasi</label>
+      <label><input type="radio" name="q24" value="b"> Editing</label>
+      <label><input type="radio" name="q24" value="c"> Browsing</label>
+      <label><input type="radio" name="q24" value="d"> Download</label>
+    </div>
+
+    <!-- SOAL 25 -->
+    <div class="soal">
+      <p>25. Data pribadi harus dijaga untuk melindungi...</p>
+      <label><input type="radio" name="q25" value="a"> Privasi</label>
+      <label><input type="radio" name="q25" value="b"> Musik</label>
+      <label><input type="radio" name="q25" value="c"> Game</label>
+      <label><input type="radio" name="q25" value="d"> Printer</label>
+    </div>
+
+    <!-- SOAL 26 -->
+    <div class="soal">
+      <p>26. Hak cipta termasuk...</p>
+      <label><input type="radio" name="q26" value="a"> HKI</label>
+      <label><input type="radio" name="q26" value="b"> CPU</label>
+      <label><input type="radio" name="q26" value="c"> RAM</label>
+      <label><input type="radio" name="q26" value="d"> VGA</label>
+    </div>
+
+    <!-- SOAL 27 -->
+    <div class="soal">
+      <p>27. Kemampuan memahami informasi digital disebut...</p>
+      <label><input type="radio" name="q27" value="a"> Literasi digital</label>
+      <label><input type="radio" name="q27" value="b"> Hacking</label>
+      <label><input type="radio" name="q27" value="c"> Gaming</label>
+      <label><input type="radio" name="q27" value="d"> Browsing</label>
+    </div>
+
+    <!-- SOAL 28 -->
+    <div class="soal">
+      <p>28. Informasi salah tanpa sengaja disebut...</p>
+      <label><input type="radio" name="q28" value="a"> Misinformasi</label>
+      <label><input type="radio" name="q28" value="b"> Coding</label>
+      <label><input type="radio" name="q28" value="c"> Editing</label>
+      <label><input type="radio" name="q28" value="d"> Typing</label>
+    </div>
+
+    <!-- SOAL 29 -->
+    <div class="soal">
+      <p>29. Aktivitas kita di internet meninggalkan...</p>
+      <label><input type="radio" name="q29" value="a"> Jejak digital</label>
+      <label><input type="radio" name="q29" value="b"> Printer</label>
+      <label><input type="radio" name="q29" value="c"> Keyboard</label>
+      <label><input type="radio" name="q29" value="d"> Speaker</label>
+    </div>
+
+    <!-- SOAL 30 -->
+    <div class="soal">
+      <p>30. Duduk terlalu lama di depan komputer dapat mengganggu...</p>
+      <label><input type="radio" name="q30" value="a"> Kesehatan</label>
+      <label><input type="radio" name="q30" value="b"> Browser</label>
+      <label><input type="radio" name="q30" value="c"> Mouse</label>
+      <label><input type="radio" name="q30" value="d"> Data</label>
+    </div>
+
+    <!-- SOAL 31 -->
+    <div class="soal">
+      <p>31. Google Classroom digunakan dalam bidang...</p>
+      <label><input type="radio" name="q31" value="a"> Pendidikan</label>
+      <label><input type="radio" name="q31" value="b"> Pertanian</label>
+      <label><input type="radio" name="q31" value="c"> Perikanan</label>
+      <label><input type="radio" name="q31" value="d"> Peternakan</label>
+    </div>
+
+    <!-- SOAL 32 -->
+    <div class="soal">
+      <p>32. Pendaftaran rumah sakit online termasuk bidang...</p>
+      <label><input type="radio" name="q32" value="a"> Kesehatan</label>
+      <label><input type="radio" name="q32" value="b"> Hiburan</label>
+      <label><input type="radio" name="q32" value="c"> Musik</label>
+      <label><input type="radio" name="q32" value="d"> Olahraga</label>
+    </div>
+
+    <!-- SOAL 33 -->
+    <div class="soal">
+      <p>33. Shopee dan Tokopedia termasuk...</p>
+      <label><input type="radio" name="q33" value="a"> E-commerce</label>
+      <label><input type="radio" name="q33" value="b"> Antivirus</label>
+      <label><input type="radio" name="q33" value="c"> Browser</label>
+      <label><input type="radio" name="q33" value="d"> Hardware</label>
+    </div>
+
+    <!-- SOAL 34 -->
+    <div class="soal">
+      <p>34. Pelayanan pemerintah berbasis digital disebut...</p>
+      <label><input type="radio" name="q34" value="a"> E-government</label>
+      <label><input type="radio" name="q34" value="b"> Coding</label>
+      <label><input type="radio" name="q34" value="c"> Browser</label>
+      <label><input type="radio" name="q34" value="d"> Editing</label>
+    </div>
+
+    <!-- SOAL 35 -->
+    <div class="soal">
+      <p>35. Lukisan digital termasuk pemanfaatan informatika di bidang...</p>
+      <label><input type="radio" name="q35" value="a"> Seni</label>
+      <label><input type="radio" name="q35" value="b"> Pertanian</label>
+      <label><input type="radio" name="q35" value="c"> Perikanan</label>
+      <label><input type="radio" name="q35" value="d"> Perkebunan</label>
+    </div>
+
+    <!-- SOAL 36 -->
+    <div class="soal">
+      <p>36. Langkah awal membuat aplikasi adalah...</p>
+      <label><input type="radio" name="q36" value="a"> Merancang</label>
+      <label><input type="radio" name="q36" value="b"> Menghapus</label>
+      <label><input type="radio" name="q36" value="c"> Menjual</label>
+      <label><input type="radio" name="q36" value="d"> Mematikan</label>
+    </div>
+
+    <!-- SOAL 37 -->
+    <div class="soal">
+      <p>37. Alat untuk mendeteksi cahaya disebut...</p>
+      <label><input type="radio" name="q37" value="a"> Sensor</label>
+      <label><input type="radio" name="q37" value="b"> Speaker</label>
+      <label><input type="radio" name="q37" value="c"> Printer</label>
+      <label><input type="radio" name="q37" value="d"> CPU</label>
+    </div>
+
+    <!-- SOAL 38 -->
+    <div class="soal">
+      <p>38. Google Maps menggunakan teknologi...</p>
+      <label><input type="radio" name="q38" value="a"> SIG</label>
+      <label><input type="radio" name="q38" value="b"> VGA</label>
+      <label><input type="radio" name="q38" value="c"> RAM</label>
+      <label><input type="radio" name="q38" value="d"> LAN</label>
+    </div>
+
+    <!-- SOAL 39 -->
+    <div class="soal">
+      <p>39. Contoh AI dalam kehidupan sehari-hari adalah...</p>
+      <label><input type="radio" name="q39" value="a"> Google Assistant</label>
+      <label><input type="radio" name="q39" value="b"> Buku</label>
+      <label><input type="radio" name="q39" value="c"> Pensil</label>
+      <label><input type="radio" name="q39" value="d"> Penggaris</label>
+    </div>
+
+    <!-- SOAL 40 -->
+    <div class="soal">
+      <p>40. Dalam proyek informatika diperlukan...</p>
+      <label><input type="radio" name="q40" value="a"> Kolaborasi</label>
+      <label><input type="radio" name="q40" value="b"> Pertengkaran</label>
+      <label><input type="radio" name="q40" value="c"> Kemalasan</label>
+      <label><input type="radio" name="q40" value="d"> Bermain</label>
+    </div>
+
+    <button type="button" onclick="cekJawaban()">Selesai Ujian</button>
+
+  </form>
+
+  <div id="hasil"></div>
 </div>
 
 <script>
-const questions = [
-{
-q:"1. Data berupa angka disebut...",
-o:["Numerik","Teks","Video","Gambar"],
-a:"Numerik"
-},
-{
-q:"2. Data berupa huruf dan kalimat disebut...",
-o:["Video","Teks","Audio","Grafik"],
-a:"Teks"
-},
-{
-q:"3. Sistem bilangan komputer menggunakan...",
-o:["Desimal","Romawi","Biner","Hexa"],
-a:"Biner"
-},
-{
-q:"4. ASCII digunakan untuk...",
-o:["Menggambar","Representasi karakter","Memutar video","Menyimpan gambar"],
-a:"Representasi karakter"
-},
-{
-q:"5. Struktur data yang menyimpan banyak data disebut...",
-o:["Loop","Array","Operator","Variabel"],
-a:"Array"
-},
-{
-q:"6. Struktur data berbentuk cabang disebut...",
-o:["Tree","List","Array","Tabel"],
-a:"Tree"
-},
-{
-q:"7. Diagram batang digunakan untuk...",
-o:["Data kategori","Video","Audio","Program"],
-a:"Data kategori"
-},
-{
-q:"8. Grafik garis cocok untuk...",
-o:["Data waktu","Data gambar","Video","Huruf"],
-a:"Data waktu"
-},
-{
-q:"9. Pengumpulan data dengan pengamatan langsung disebut...",
-o:["Observasi","Survei","Eksperimen","Wawancara"],
-a:"Observasi"
-},
-{
-q:"10. Tempat penyimpanan data terstruktur disebut...",
-o:["Database","Folder","Browser","CPU"],
-a:"Database"
-},
-{
-q:"11. Mengurutkan data disebut...",
-o:["Searching","Sorting","Filtering","Loading"],
-a:"Sorting"
-},
-{
-q:"12. Mencari data tertentu disebut...",
-o:["Sorting","Searching","Printing","Coding"],
-a:"Searching"
-},
-{
-q:"13. Microsoft Excel termasuk software...",
-o:["Spreadsheet","Game","Editor video","Browser"],
-a:"Spreadsheet"
-},
-{
-q:"14. Langkah-langkah logis menyelesaikan masalah disebut...",
-o:["Program","Algoritma","Data","Variabel"],
-a:"Algoritma"
-},
-{
-q:"15. Struktur algoritma yang berjalan berurutan disebut...",
-o:["Looping","Sekuensial","Percabangan","Variabel"],
-a:"Sekuensial"
-},
-{
-q:"16. Percabangan dalam algoritma menggunakan...",
-o:["if-else","for","while","print"],
-a:"if-else"
-},
-{
-q:"17. Pengulangan dalam program disebut...",
-o:["Looping","Variabel","Input","Output"],
-a:"Looping"
-},
-{
-q:"18. Tempat menyimpan nilai disebut...",
-o:["Variabel","Loop","Flowchart","Operator"],
-a:"Variabel"
-},
-{
-q:"19. Operator penjumlahan menggunakan simbol...",
-o:["-","+","/","="],
-a:"+"
-},
-{
-q:"20. Operator logika digunakan untuk...",
-o:["Perhitungan","Perbandingan logika","Menggambar","Menyimpan"],
-a:"Perbandingan logika"
-},
-{
-q:"21. Pseudocode adalah...",
-o:["Bahasa manusia sederhana","Bahasa mesin","Gambar","Video"],
-a:"Bahasa manusia sederhana"
-},
-{
-q:"22. Flowchart menggunakan simbol untuk...",
-o:["Algoritma","Musik","Game","Internet"],
-a:"Algoritma"
-},
-{
-q:"23. Bahasa pemrograman populer adalah...",
-o:["Python","Word","Excel","Paint"],
-a:"Python"
-},
-{
-q:"24. Pemrograman berorientasi objek disebut...",
-o:["OOP","HTML","CSS","SQL"],
-a:"OOP"
-},
-{
-q:"25. Contoh dampak positif informatika adalah...",
-o:["Belajar online","Hoax","Cyberbullying","Spam"],
-a:"Belajar online"
-},
-{
-q:"26. Berita palsu di internet disebut...",
-o:["Hoax","Email","Data","Coding"],
-a:"Hoax"
-},
-{
-q:"27. Menghina orang di internet disebut...",
-o:["Cyberbullying","Browsing","Sharing","Editing"],
-a:"Cyberbullying"
-},
-{
-q:"28. Menjaga sopan santun di internet termasuk...",
-o:["Etika digital","Spam","Virus","Hack"],
-a:"Etika digital"
-},
-{
-q:"29. Menjaga password termasuk...",
-o:["Keamanan informasi","Desain","Game","Multimedia"],
-a:"Keamanan informasi"
-},
-{
-q:"30. Data pribadi harus dijaga untuk melindungi...",
-o:["Privasi","Game","Video","Website"],
-a:"Privasi"
-},
-{
-q:"31. Hak cipta termasuk...",
-o:["HKI","HTML","HTTP","CPU"],
-a:"HKI"
-},
-{
-q:"32. Kemampuan menggunakan internet dengan bijak disebut...",
-o:["Literasi digital","Debugging","Editing","Browsing"],
-a:"Literasi digital"
-},
-{
-q:"33. Informasi salah tanpa sengaja disebut...",
-o:["Misinformasi","Disinformasi","Spam","Bug"],
-a:"Misinformasi"
-},
-{
-q:"34. Aktivitas kita di internet meninggalkan...",
-o:["Jejak digital","Virus","Spam","Error"],
-a:"Jejak digital"
-},
-{
-q:"35. Posisi duduk benar saat memakai komputer disebut...",
-o:["Ergonomi","Dekorasi","Animasi","Editing"],
-a:"Ergonomi"
-},
-{
-q:"36. Pembelajaran online adalah contoh informatika di bidang...",
-o:["Pendidikan","Kesehatan","Ekonomi","Olahraga"],
-a:"Pendidikan"
-},
-{
-q:"37. Rekam medis digital digunakan dalam bidang...",
-o:["Kesehatan","Seni","Game","Musik"],
-a:"Kesehatan"
-},
-{
-q:"38. Jual beli online disebut...",
-o:["E-commerce","E-learning","E-book","E-mail"],
-a:"E-commerce"
-},
-{
-q:"39. Pelayanan pemerintah berbasis internet disebut...",
-o:["E-government","E-sport","E-book","E-class"],
-a:"E-government"
-},
-{
-q:"40. Museum virtual termasuk informatika bidang...",
-o:["Seni dan budaya","Pertanian","Transportasi","Olahraga"],
-a:"Seni dan budaya"
-},
-{
-q:"41. Langkah awal membuat aplikasi adalah...",
-o:["Perencanaan","Menghapus","Mencetak","Browsing"],
-a:"Perencanaan"
-},
-{
-q:"42. Alat pendeteksi suhu disebut...",
-o:["Sensor","Monitor","Keyboard","Speaker"],
-a:"Sensor"
-},
-{
-q:"43. SIG digunakan untuk...",
-o:["Peta digital","Menggambar","Mengetik","Musik"],
-a:"Peta digital"
-},
-{
-q:"44. Contoh AI dalam kehidupan sehari-hari adalah...",
-o:["Asisten virtual","Kipas","Lampu","Mouse"],
-a:"Asisten virtual"
-},
-{
-q:"45. Kerja sama dalam proyek disebut...",
-o:["Kolaborasi","Kompetisi","Browsing","Debugging"],
-a:"Kolaborasi"
-},
-{
-q:"46. Menentukan pola dari data disebut...",
-o:["Identifikasi pola","Browsing","Mencetak","Editing"],
-a:"Identifikasi pola"
-},
-{
-q:"47. Rata-rata disebut...",
-o:["Mean","Median","Modus","Range"],
-a:"Mean"
-},
-{
-q:"48. Struktur yang cocok untuk memilih kondisi adalah...",
-o:["Percabangan","Looping","Sekuensial","Input"],
-a:"Percabangan"
-},
-{
-q:"49. Memperbaiki kesalahan program disebut...",
-o:["Debugging","Browsing","Printing","Editing"],
-a:"Debugging"
-},
-{
-q:"50. Bahasa HTML digunakan untuk membuat...",
-o:["Website","Game","Musik","Video"],
-a:"Website"
-}
-];
+function cekJawaban(){
 
-const quizForm = document.getElementById("quizForm");
+  let jawabanBenar = {
+    q1:"a", q2:"b", q3:"b", q4:"a", q5:"a",
+    q6:"b", q7:"b", q8:"a", q9:"a", q10:"a",
+    q11:"a", q12:"c", q13:"a", q14:"a", q15:"a",
+    q16:"b", q17:"a", q18:"a", q19:"a", q20:"a",
+    q21:"b", q22:"a", q23:"a", q24:"a", q25:"a",
+    q26:"a", q27:"a", q28:"a", q29:"a", q30:"a",
+    q31:"a", q32:"a", q33:"a", q34:"a", q35:"a",
+    q36:"a", q37:"a", q38:"a", q39:"a", q40:"a"
+  };
 
-questions.forEach((item,index)=>{
-  let div = document.createElement("div");
-  div.classList.add("question");
+  let skor = 0;
 
-  let html = `<h3>${item.q}</h3>`;
+  for(let key in jawabanBenar){
+    let jawaban = document.querySelector(`input[name=${key}]:checked`);
 
-  item.o.forEach(option=>{
-    html += `
-      <label>
-        <input type="radio" name="q${index}" value="${option}">
-        ${option}
-      </label>
-    `;
-  });
-
-  div.innerHTML = html;
-  quizForm.appendChild(div);
-});
-
-function checkAnswers(){
-  let score = 0;
-
-  questions.forEach((item,index)=>{
-    let answer = document.querySelector(`input[name="q${index}"]:checked`);
-
-    if(answer && answer.value === item.a){
-      score++;
+    if(jawaban && jawaban.value === jawabanBenar[key]){
+      skor++;
     }
-  });
+  }
 
-  document.getElementById("result").innerHTML =
-    `Nilai Anda: ${score} / 50`;
+  document.getElementById("hasil").innerHTML =
+    "Nilai Kamu : " + skor + " / 40";
 }
 </script>
 
